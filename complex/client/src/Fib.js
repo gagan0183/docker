@@ -27,10 +27,6 @@ export class Fib extends Component {
         {this.state.seenIndexes.map(({ number }) => number).join(', ')}
     }
 
-    renderIndexes() {
-        {this.state.seenIndexes.map(({ number }) => number).join(', ')}
-    }
-
     renderValues() {
         const entries = [];
         for (let key in this.state.values) {

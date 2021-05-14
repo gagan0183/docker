@@ -1,12 +1,12 @@
 import './App.css';
-import { Route, Router } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Route } from 'react-router';
+import { BrowserRouter, Link } from 'react-router-dom';
 import { Fib } from './Fib';
-import OtherPage from './OtherPage';
+import { OtherPage } from './OtherPage';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <header className="App-header"></header>
         <Link to="/">Home</Link>
@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/" component={Fib} />
         <Route path="/otherpage" component={OtherPage} />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
