@@ -24,7 +24,6 @@ pgClient.on("connect", (client) => {
   });
 
 const redis = require("redis");
-const { restart } = require("nodemon");
 const redisClient = redis.createClient({
     host: keys.redisHost,
     port: keys.redisPort,
