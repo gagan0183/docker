@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t gaganbhullar/react-test -f ./cient/Dockerfile.dev
+
+script:
+  - docker run gaganbhullar/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t gaganbhullar/multi-client ./client
+  - docker build -t gaganbhullar/multi-nginx ./nginx
+  - docker build -t gaganbhullar/multi-server ./server
+  - docker build -t gaganbhullar/multi-worker ./worker
+
+  # log in to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # push images to docker hub
+  - docker push gaganbhullar/multi-client
+  - docker push gaganbhullar/multi-nginx
+  - docker push gaganbhullar/multi-server
+  - docker push gaganbhullar/multi-worker
